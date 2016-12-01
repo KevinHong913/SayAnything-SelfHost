@@ -1,0 +1,15 @@
+/Users/i853536/projects/SelfHost/SelfHost/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/Users/i853536/projects/SelfHost/SelfHost/bin/Debug/Microsoft.Owin.Host.HttpListener.dll
+/Users/i853536/projects/SelfHost/SelfHost/bin/Debug/Newtonsoft.Json.dll
+/Users/i853536/projects/SelfHost/SelfHost/bin/Debug/Owin.dll
+/Users/i853536/projects/SelfHost/SelfHost/bin/Debug/Microsoft.Owin.Diagnostics.dll
+/Users/i853536/projects/SelfHost/SelfHost/bin/Debug/Microsoft.Owin.Hosting.dll
+/Users/i853536/projects/SelfHost/SelfHost/bin/Debug/Microsoft.Owin.Security.dll
+/Users/i853536/projects/SelfHost/SelfHost/bin/Debug/Microsoft.AspNet.SignalR.Core.dll
+/Users/i853536/projects/SelfHost/SelfHost/bin/Debug/System.Web.Cors.dll
+/Users/i853536/projects/SelfHost/SelfHost/bin/Debug/Microsoft.Owin.dll
+/Users/i853536/projects/SelfHost/SelfHost/bin/Debug/Microsoft.Owin.Cors.dll
+/Users/i853536/projects/SelfHost/SelfHost/bin/Debug/SelfHost.exe.mdb
+/Users/i853536/projects/SelfHost/SelfHost/bin/Debug/SelfHost.exe
+/Users/i853536/projects/SelfHost/SelfHost/obj/x86/Debug/SelfHost.exe
+/Users/i853536/projects/SelfHost/SelfHost/obj/x86/Debug/SelfHost.exe.mdb

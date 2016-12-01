@@ -28,11 +28,39 @@ namespace SelfHost
 		[HubMethodName("NewPlayer")]
 		public void NewPlayer(string username)
 		{
-			Debug.WriteLine("[Invoke] NewPlater");
+			Debug.WriteLine("[Invoke] NewPlayer");
 			Program.gameData.AddUser(new UserData(username));
 
 			Clients.All.UserAdded(Program.gameData.UserList);
 			Debug.WriteLine("[Broadcast] UserAdded - User " + username + " added. Total User: " + Program.gameData.UserList.Count);
+		}
+
+		[HubMethodName("DeletePlayer")]
+		public void DeletePlayer(string username)
+		{
+			Debug.WriteLine("[Invoke] DeletePlayer");
+			Program.gameData.RemoveUserByName(username);
+			Clients.All.UserDeleted(Program.gameData.UserList);
+			Debug.WriteLine("[Broadcast] UserDeleted - User " + username + " deleted. Total User: " + Program.gameData.UserList.Count);
+		}
+
+		[HubMethodName("StartGame")]
+		public void StartGame()
+		{
+			Debug.WriteLine("[Invoke] StartGame");
+			Program.gameData.SetHost();
+			Clients.All.GameStart(Program.gameData.UserList, Program.gameData.QuestionNum);
+			Debug.WriteLine("[Broadcast] GameStart");
+
+		}
+
+		[HubMethodName("SubmitAnswer")]
+		public void SubmitAnswer(string username, string answer)
+		{
+			Debug.WriteLine("[Invoke] SubmitAnswer");
+			Program.gameData.SetAnswerByName(username, answer); // set answer
+			Clients.All.AnswerSubmitted(Program.gameData.UserList, Program.gameData.IsAllUserSubmit()); // send updated userlist and is all user submit answer
+			Debug.WriteLine("[Broadcast] AnswerSubmitted");
 
 		}
 	}

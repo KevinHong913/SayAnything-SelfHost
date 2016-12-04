@@ -104,7 +104,9 @@ namespace SelfHost
 			{
 				if (userList[i].Username == username)
 				{
-					userList[i].Bet = betNum;
+					userList[i].BettingChoice = betNum;
+					userList[i].BettingUsername = userList[betNum].Username;
+					userList[betNum].BetRecieved++;
 					betCount++;
 					return;
 				}
@@ -143,20 +145,20 @@ namespace SelfHost
 			{
 				if (userList[i].IsHost == false)
 				{
-					scoreList[ userList[i].Bet ]++;
+					scoreList[ userList[i].BettingChoice ]++;
 				}
 			}
 			Debug.WriteLine(scoreList.ToString());
 
 			int[] roundScore = Enumerable.Repeat<int>(0, userList.Count).ToArray();
-			int hostPick = UserList[hostIndex].Bet;
+			int hostPick = UserList[hostIndex].BettingChoice;
 			roundScore[ hostPick ]++; // host pick, +1 point
 			// host got points from how many bets on the answer they pick. Max is 2 points
 			roundScore[hostIndex] = scoreList[hostPick] > 2 ? 2 : scoreList[hostPick]; 
 			// player that bet on the host answer will get points
 			for (int i = 0; i < userList.Count; ++i)
 			{
-				if (userList[i].IsHost == false && userList[i].Bet == hostPick)
+				if (userList[i].IsHost == false && userList[i].BettingChoice == hostPick)
 				{
 					roundScore[i]++;
 				}
@@ -165,7 +167,8 @@ namespace SelfHost
 			// insert score into player info
 			for (int i = 0; i < userList.Count; ++i)
 			{
-				userList[i].Scores.Add(roundScore[i]);
+				userList[i].TotalScore += roundScore[i];
+				userList[i].ThisRoundScore = roundScore[i];
 			}
 			Debug.WriteLine("Final user score: " + String.Join("; ", userList));
 
@@ -190,8 +193,10 @@ namespace SelfHost
 			SetHost();
 			for (int i = 0; i < userList.Count; ++i)
 			{
-				userList[i].Bet = -1;
+				userList[i].BettingChoice = -1;
+				userList[i].BettingUsername = "";
 				userList[i].Answer = "";
+				userList[i].ThisRoundScore = 0;
 			}
 
 			// if every player been host once, game end
@@ -199,7 +204,7 @@ namespace SelfHost
 			{
 				for (int i = 0; i < userList.Count; ++i)
 				{
-					userList[i].Scores.Clear();
+					userList[i].TotalScore = 0;
 					RoundNumber = 0;
 				}
 			}

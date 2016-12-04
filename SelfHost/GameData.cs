@@ -114,10 +114,10 @@ namespace SelfHost
 		public void CalculateScore()
 		{
 			Debug.WriteLine("[GAME DATA] Calculate Score");
-			userList[0].Bet = 1;
-			userList[1].Bet = 1;
-			userList[2].Bet = 2;
-			userList[3].Bet = 1;
+			//userList[0].Bet = 1;
+			//userList[1].Bet = 1;
+			//userList[2].Bet = 2;
+			//userList[3].Bet = 1;
 			/**
 			 * player get point when host picks it,
 			 * player get point when his bet is correct

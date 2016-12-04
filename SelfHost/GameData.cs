@@ -12,6 +12,8 @@ namespace SelfHost
 		private int hostIndex;
 		private int answerCount;
 		private int betCount;
+		public int ResetCount;
+		public int RoundNumber;
 
 		public List<UserData> UserList
 		{
@@ -37,6 +39,9 @@ namespace SelfHost
 			questionNum = 0;
 			hostIndex = 0;
 			answerCount = 0;
+			betCount = 0;
+			ResetCount = 0;
+			RoundNumber = 0;
 		}
 
 		public void SetHost()
@@ -172,11 +177,32 @@ namespace SelfHost
 			return userList;
 		}
 
-		/**
-		 * TODO:
-		 * Restart
-		 * reset
-		 **/
+		public void ResetRound()
+		{
+			RoundNumber++;
 
+			questionNum++;
+			hostIndex++;
+			betCount = 0;
+			answerCount = 0;
+			ResetCount = 0;
+
+			SetHost();
+			for (int i = 0; i < userList.Count; ++i)
+			{
+				userList[i].Bet = -1;
+				userList[i].Answer = "";
+			}
+
+			// if every player been host once, game end
+			if (RoundNumber == userList.Count)
+			{
+				for (int i = 0; i < userList.Count; ++i)
+				{
+					userList[i].Scores.Clear();
+					RoundNumber = 0;
+				}
+			}
+		}
 	}
 }

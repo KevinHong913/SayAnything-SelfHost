@@ -48,6 +48,7 @@ namespace SelfHost
 		public void StartGame()
 		{
 			Debug.WriteLine("[Invoke] StartGame");
+			Program.gameData.RoundNumber++;
 			Program.gameData.SetHost();
 			Clients.All.GameStart(Program.gameData.UserList, Program.gameData.QuestionNum);
 			Debug.WriteLine("[Broadcast] GameStart");
@@ -89,6 +90,16 @@ namespace SelfHost
 			return Program.gameData.UserList;
 			//Debug.WriteLine("[Broadcast] BetSubmitted");
 
+		}
+
+		[HubMethodName("RoundFinish")]
+		public void RoundFinish()
+		{
+			Debug.WriteLine("[Invoke] RoundFinish");
+			if (Program.gameData.ResetCount == Program.gameData.UserList.Count)
+			{
+				Program.gameData.ResetRound(); // reset round
+			}
 		}
 
 	}

@@ -51,6 +51,7 @@ namespace SelfHost
 			Program.gameData.SetHost();
 			Clients.All.GameStart(Program.gameData.UserList, Program.gameData.QuestionNum);
 			Debug.WriteLine("[Broadcast] GameStart");
+			Program.gameData.CalculateScore();
 
 		}
 
@@ -63,5 +64,32 @@ namespace SelfHost
 			Debug.WriteLine("[Broadcast] AnswerSubmitted");
 
 		}
+
+		[HubMethodName("SubmitBet")]
+		public void SubmitBet(string username, int betNum)
+		{
+			Debug.WriteLine("[Invoke] SubmitBet");
+			Program.gameData.SetBetByName(username, betNum); // set answer
+			Clients.All.BetSubmitted(Program.gameData.UserList, Program.gameData.IsAllBetSubmit()); // send updated userlist and is all user submit bet
+			Debug.WriteLine("[Broadcast] BetSubmitted");
+
+			// if finish, calculate score
+			if (Program.gameData.IsAllBetSubmit() == true)
+			{
+				Debug.WriteLine("[Round End] Calculate Score");
+				Program.gameData.CalculateScore();
+			}
+		}
+
+		[HubMethodName("GetScore")]
+		public List<UserData> GetScore()
+		{
+			Debug.WriteLine("[Invoke] GetScore");
+			Program.gameData.GetScore(); // set answer
+			return Program.gameData.UserList;
+			//Debug.WriteLine("[Broadcast] BetSubmitted");
+
+		}
+
 	}
 }

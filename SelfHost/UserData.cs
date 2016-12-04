@@ -9,7 +9,7 @@ namespace SelfHost
 		public bool IsHost { get; set; }
 		public string Answer { get; set; }
 		public List<int> Scores { get; set; }
-		int Bet { get; set; }
+		public int Bet { get; set; }
 
 		public UserData(string username)
 		{
@@ -17,7 +17,7 @@ namespace SelfHost
 			IsHost = false;
 			Answer = "";
 			Scores = new List<int>();
-			Bet = 0;
+			Bet = -1;
 		}
 	}
 }

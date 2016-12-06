@@ -180,7 +180,7 @@ namespace SelfHost
 			return userList;
 		}
 
-		public void ResetRound()
+		public bool ResetRound()
 		{
 			RoundNumber++;
 
@@ -207,6 +207,12 @@ namespace SelfHost
 					userList[i].TotalScore = 0;
 					RoundNumber = 0;
 				}
+
+				return true;
+			}
+			else
+			{
+				return false;
 			}
 		}
 	}

@@ -1,10 +1,10 @@
 ﻿<Properties StartupConfiguration="{2881F88A-E08B-4C48-ACC8-5FEDDEE09BFF}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="SelfHost/GameData.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="SelfHost/Program.cs">
     <Files>
-      <File FileName="SelfHost/SayAnythingHub.cs" Line="78" Column="36" />
-      <File FileName="SelfHost/GameData.cs" Line="116" Column="4" />
-      <File FileName="SelfHost/UserData.cs" Line="20" Column="12" />
-      <File FileName="SelfHost/Program.cs" Line="28" Column="5" />
+      <File FileName="SelfHost/SayAnythingHub.cs" Line="73" Column="33" />
+      <File FileName="SelfHost/GameData.cs" Line="199" Column="36" />
+      <File FileName="SelfHost/UserData.cs" Line="25" Column="23" />
+      <File FileName="SelfHost/Program.cs" Line="40" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
@@ -13,4 +13,5 @@
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.ItemProperties.SelfHost PreferredExecutionTarget="MonoDevelop.Default" />
+  <MultiItemStartupConfigurations />
 </Properties>

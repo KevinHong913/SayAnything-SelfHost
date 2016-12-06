@@ -98,7 +98,8 @@ namespace SelfHost
 			Debug.WriteLine("[Invoke] RoundFinish");
 			if (Program.gameData.ResetCount == Program.gameData.UserList.Count)
 			{
-				Program.gameData.ResetRound(); // reset round
+				bool gameend = Program.gameData.ResetRound(); // reset round
+				Clients.All.GameEnd(gameend);
 			}
 		}
 

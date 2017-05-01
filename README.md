@@ -112,100 +112,112 @@ The server is a SignalR self host server.
 ##### Get current player lists
 
 * Client => Invoke: GetPlayerList ( ), return list
-```csharp
- 	List<UserData> list = SignalRClient.GetPlayerList();
-```
+    ```csharp
+    List<UserData> list = SignalRClient.GetPlayerList();
+    ```
 ##### Join Button
 * Client => Invoke: AddNewPlayer (username)
-```csharp
- 	SignalRClient.AddNewPlayer(username);
-```
+    ```csharp
+    SignalRClient.AddNewPlayer(username);
+    ```
 * Client => Listen to: OnUserAdded
-```csharp
+    ```csharp
     SignalRClient.OnUserAdded += (userList) => {
     	/* Do something */
-	};
-```
+    };
+    ```
 ### 2. Room:
 ##### Leave Button
 * Client => Invoke: DeletePlayer (username)
-```csharp
-	SignalRClient.DeletePlayer(username);
-```
+    ```csharp
+    SignalRClient.DeletePlayer(username);
+    ```
 * Client => Listen to: OnUserDeleted
-```csharp
-	SignalRClient.OnUserDeleted += (userList) =>
-	{
-		/* Do something */
-	};
-```
+
+    ```csharp
+    SignalRClient.OnUserDeleted += (userList) =>
+    {
+	/* Do something */
+    };
+    ```
 
 ##### Start Button
 * Client => Invoke: StartGame ( ), return `(UserList, QuestionNum)`
+
 Host: IsHost will be set to true
-```csharp
-	SignalRClient.StartGame();
-```
+
+    ```csharp
+    SignalRClient.StartGame();
+    ```
+    
 * Client => Listen to: OnGameStarted
-```csharp
-	SignalRClient.OnGameStarted += (userList, questionNum) =>
-	{
-		/* Do something */
-	};
-```
+
+    ```csharp
+    SignalRClient.OnGameStarted += (userList, questionNum) =>
+    {
+        /* Do something */
+    };
+    ```
 * Question List (Client)
-`public string[] QuestionList = new string[3] { "Q1", "Q2", "Q3"};`
+    
+    `public string[] QuestionList = new string[3] { "Q1", "Q2", "Q3"};`
 
 ### 3a. USER: user answer page
 ##### Submit Button
 * Client => Invoke: AnswerSubmit(username, answer)
-```csharp
-	SignalRClient.SubmitAnswer(answer, answer);
-```
+
+    ```csharp
+    SignalRClient.SubmitAnswer(answer, answer);
+    ```
 
 ### 3b. USER & HOST: Wait for other user
 ##### Waiting for other player to submit
 * Client => Listen to: OnAnswerSubmitted (userList, isFinished)
-```csharp
-	SignalRClient.OnAnswerSubmitted += (userList, isFinished) =>
-	{
-		/* Do something */
-	};
-```
+    
+    ```csharp
+    SignalRClient.OnAnswerSubmitted += (userList, isFinished) =>
+    {
+	/* Do something */
+    };
+    ```
 ##### NOTE: isFinished is true if submit count == (usercount - 1), so please do not let the host submit anser
 ----- End of Current progress -----
 
 ### 4a. USER: Submit Bet
 ##### Submit
 * Client => Invoke: SubmitBet (username, bet number)
-```csharp
-	ChatHubProxy.Invoke("SubmitBet", username, betNum);
-```
+    
+    ```csharp
+    ChatHubProxy.Invoke("SubmitBet", username, betNum);
+    ```
 
 ### 4b. HOST: Choice answer
 ##### Submit
 * Client => Invoke: SubmitBet (username, bet number)
-```csharp
-	ChatHubProxy.Invoke("SubmitBet", username, betNum);
-```
+    
+    ```csharp
+    ChatHubProxy.Invoke("SubmitBet", username, betNum);
+    ```
 
 #### NOTE: Bet number is the index number of the user list.
 
 ### 5. Answer Page:
 ##### Waiting for other player to bet
 * Client => Listen to: BetSubmitted (userList, isFinished)
-```csharp
-	SignalRClient.OnBetSubmitted += (userList, isFinished) =>
-	{
-		/* Do something */
-	}
-```
+    
+    ```csharp
+    SignalRClient.OnBetSubmitted += (userList, isFinished) =>
+    {
+	/* Do something */
+    }
+    ```
 ### 6. Score Board:
 ##### Go to scoreboard
 * Client => Invoke: GetScore(), return user list with score updated
-```csharp
- 	List<UserData> list = SignalRClient.GetScore();
-```
+
+    ```csharp
+    List<UserData> list = SignalRClient.GetScore();
+    ```
 
 ### 7. Count down:
 ##### Count Down 10 second, then go to next round
@@ -214,10 +226,11 @@ Host: IsHost will be set to true
 * (If round number == player number, game will end and will jump to Step 2)
 ##### After all user invoke RoundFinish
 * Client => Listen To: OnGameEnd
-```csharp
-	SignalRClient.OnGameEnd += (gameEnd) =>
-	{
-		/* Do something */
-		/* True if game end, false if only round end and will continue the game */
-	}
-```
+
+    ```csharp
+    SignalRClient.OnGameEnd += (gameEnd) =>
+    {
+	/* Do something */
+	/* True if game end, false if only round end and will continue the game */
+    }
+    ```
